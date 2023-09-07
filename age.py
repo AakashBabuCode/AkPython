@@ -1,0 +1,33 @@
+from tkinter import*
+from datetime import date
+root = Tk()
+root.geometry("800x700")
+#root.resizable(False,False)
+root.configure(bg="black")
+photo = PhotoImage(file="C:\\Users\\ELCOT\\Age.png")
+Myimg = Label(image=photo).grid(row=0,column=1)
+
+def convert():
+    today = date.today()
+    birthdate = date(int(yearentry.get()), int(monthentry.get()), int(dayentry.get()))
+    age = today.year-birthdate.year-((today.month,today.day)<(birthdate.month,birthdate.day))
+    Label(text=f"{Name.get()} your age is {age}").grid(row=5,column=3)
+Label(root,text="name",font=('arial',10,'bold'),bg="pink",fg="red",width=15,height=1).grid(row=1,column=0,padx=90)
+Label(root,text="year",font=('arial',10,'bold'),bg="green",fg="blue",width=15,height=1).grid(row=2,column=0,padx=90)
+Label(root,text="month",font=('arial',10,'bold'),bg="pink",fg="red",width=15,height=1).grid(row=3,column=0,padx=90)
+Label(root,text="day",font=('arial',10,'bold'),bg="green",fg="blue",width=15,height=1).grid(row=4,column=0,padx=90)
+Name = StringVar()
+Year = StringVar()
+Month = StringVar()
+Day = StringVar()
+
+nameentry = Entry(root,textvariable=Name)
+yearentry = Entry(root,textvariable=Year)
+monthentry = Entry(root,textvariable=Month)
+dayentry = Entry(root,textvariable=Day)
+nameentry.grid(row=1,column=1,pady=10)
+yearentry.grid(row=2,column=1,pady=10)
+monthentry.grid(row=3,column=1,pady=10)
+dayentry.grid(row=4,column=1,pady=10)
+but = Button(root,text="convert",font=('arial',15,'bold'),fg="green",command=convert).grid(row=5,column=1,pady=10)
+root.mainloop()
